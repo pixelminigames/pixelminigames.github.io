@@ -2,42 +2,34 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 100;
 canvas.height = 200;
-var start = function(){
-	var bx = 0, by = 0;
-	var r = "#FF0000", g = "#00FF00", b = "#0000FF";
-	var colorList = [r, g, b];
-	var score = 0;
-	function randInt(min, max){
-		return Math.floor(Math.random() * (max - min + 1) + min);
-	}
-	var player = {
+let start = function(){
+	const colorList = ["#FF0000", "#00FF00", "#0000FF"];
+	let bx = 0, by = 0;
+	let score = 0;
+	const player = {
 		w: 8,	//width
 		h: 8,	//height
 		x: canvas.width / 2 - 4,	//x position
 		y: canvas.height - 24,		//y position
-		color: r
+		color: colorList[0]
 	};
-	var bar = {
+	let bar = {
 		w: 250,
 		h: 8,
 		x: bx,
 		y: by,
-		color: colorList[randInt(0, 2)],
+		color: colorList[Math.floor(Math.random() * 3)],
 		speed: 3
 	}
 	document.onkeydown = function(e){
-		if(e.keyCode == 37){
-			player.color = r;
-		}else if(e.keyCode == 40){
-			player.color = g;
-		}else if(e.keyCode == 39){
-			player.color = b;
-		}
+		if(e.keyCode == 37) player.color = colorList[0];
+		else if(e.keyCode == 40) player.color = colorList[1];
+		else if(e.keyCode == 39) player.color = colorList[2];
 	}
-	var gameLoop = setInterval(function(){
+	let gameLoop = setInterval(function(){
 		ctx.clearRect(0, 0, 100, 200)
 		ctx.fillStyle = "#000000";
-		var strScore = "" + score;
+		let strScore = "" + score;
 		ctx.fillText("" + score, 46 - strScore.length, 10)
 		ctx.fillStyle = player.color;
 		ctx.fillRect(player.x, player.y, player.w, player.h)
