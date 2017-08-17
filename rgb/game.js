@@ -43,7 +43,7 @@ let start = function(){
 				bar.y += bar.speed;
 			}else if(bar.y >= 200){
 				score++;
-				bar.color = colorList[randInt(0, 2)];
+				bar.color = colorList[Math.floor(Math.random() * 3)];
 				bar.y = 0;
 				if(bar.speed < 8.4){
 					bar.speed += 0.3;
